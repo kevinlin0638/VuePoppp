@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @keydown.enter="onPopDown" @keyup.enter="onPopUp">
     <div>
       <img alt="Vue logo" :src="imgUrl" @mousedown="onPopDown" @mouseup="onPopUp">
       <div class="top-centered">{{counter}}</div>
@@ -29,7 +29,18 @@ export default {
     onPopUp() {
       this.imgUrl = this.i1
     },
-  }
+  },
+  created() {
+    window.addEventListener('keydown', (e) => {
+      console.log(e)
+      this.onPopDown()
+    });
+
+    window.addEventListener('keyup', (e) => {
+      console.log(e)
+      this.onPopUp()
+    });
+  },
 }
 </script>
 
